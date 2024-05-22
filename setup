@@ -11,7 +11,7 @@ fi
 
 
 echo "installing tools..."
-sudo apt-get install git curl unzip wget fontconfig net-tools vim nano zsh -y 1> /dev/null
+sudo apt-get install git curl unzip tar wget fontconfig net-tools vim nano zsh -y 1> /dev/null
 
 
 echo "installing the Hack Nerd Font"
@@ -42,15 +42,28 @@ npm -v
 
 
 # Neovim
-echo "install Neovim"
-sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt update 1> /dev/null
-sudo apt install neovim -y 1> /dev/null
+echo "installing Neovim"
+curl -LO https://github.com/neovim/neovim/releases/download/v0.10.0/nvim-linux64.tar.gz 1> /dev/null
 
 if [[ $? -ne 0 ]]; then
   echo "failed to install neovim"
   exit
 fi
+
+NVIM="nvim-linux64.tar.gz"
+echo "copying files to your system"
+tar -xvf ./$NVIM 1> /dev/null
+
+if [[ $? -ne 0 ]]; then
+  echo "extracting failed"
+  exit
+fi
+
+sudo cp -r nvim-linux64/bin/* /usr/bin/.
+sudo cp -r nvim-linux64/lib/* /lib/.
+sudo cp -r nvim-linux64/share/* /usr/share/.
+
+echo "neovim setup done!"
 
 nvim --version
 
