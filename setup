@@ -1,31 +1,59 @@
 #!/bin/bash
+echo "updating & upgrading the system..."
+sudo apt-get update 1> /dev/null
+sudo apt-get upgrade -y 1> /dev/null
 
-sudo apt-get update
-sudo apt-get upgrade -y
 
-sudo apt-get install git curl unzip wget fontconfig net-tools vim nano zsh 
+if [ $? -ne 0 ]; then
+  echo "failed to upgrade the system"
+  exit
+fi
 
-curl -fLo "Hack.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Hack.zip
+
+echo "installing tools..."
+sudo apt-get install git curl unzip wget fontconfig net-tools vim nano zsh -y 1> /dev/null
+
+
+echo "installing the Hack Nerd Font"
+curl -fLo "Hack.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/Hack.zip 1> /dev/null
+
+if [ $? -ne 0 ]; then
+  echo "failed to install the font"
+  exit
+fi
 
 mkdir -p ~/.local/share/fonts
 unzip Hack.zip -d ~/.local/share/fonts
 
 fc-cache -fv
-fc-list | grep "Hack"
 
 echo "installing the node.js"
-curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
-sudo apt-get install -y nodejs
+curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash - 1> /dev/null
+sudo apt-get install -y nodejs 1> /dev/null
+
+
+if [[ $? -ne 0 ]]; then
+  echo "failed to install node.js"
+  exit
+fi
+
 node -v
 npm -v
+
 
 # Neovim
 echo "install Neovim"
 sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt update
-sudo apt install neovim
+sudo apt update 1> /dev/null
+sudo apt install neovim -y 1> /dev/null
+
+if [[ $? -ne 0 ]]; then
+  echo "failed to install neovim"
+  exit
+fi
+
 nvim --version
 
+
+echo "copied the .zshrc to you current user home dir"
 cp ./zsh/.zshrc ~/.zshrc
-
-
