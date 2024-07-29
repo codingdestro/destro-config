@@ -16,6 +16,8 @@ local plugins = {
         "lua-language-server",
         "pyright",
         "black",
+        "clangd",
+        "clang-format",
       },
     },
   },

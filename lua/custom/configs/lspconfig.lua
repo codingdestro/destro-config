@@ -78,3 +78,6 @@ lspconfig.lua_ls.setup {
 
 -- Python Lsp Configuration
 lspconfig.pyright.setup {}
+
+-- C/C++ Lsp Configuration
+lspconfig.clangd.setup {}
