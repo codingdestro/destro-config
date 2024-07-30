@@ -81,3 +81,15 @@ lspconfig.pyright.setup {}
 
 -- C/C++ Lsp Configuration
 lspconfig.clangd.setup {}
+
+-- Ruby Lsp Configuration
+lspconfig.ruby_lsp.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "ruby", "rb" },
+  settings = {
+    solargraph = {
+      diagnostics = true,
+    },
+  },
+}
