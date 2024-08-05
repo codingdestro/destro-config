@@ -93,3 +93,6 @@ lspconfig.ruby_lsp.setup {
     },
   },
 }
+
+-- Gleam  Lsp Configuration
+lspconfig.gleam.setup {}

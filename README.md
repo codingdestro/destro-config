@@ -15,6 +15,8 @@
 - Python `pyright`
 - C/C++ `clangd`
 
+`For Gleam text highlighting use :TSInstall gleam`
+
 #### Formatters
 
 - Typescript/Javascript `prettier` `prettierd`
