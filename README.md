@@ -42,6 +42,15 @@ Ensure that you have the following installed:
 
 #### Installation
 
+Install the NvChad
+
+```bash
+git clone https://github.com/NvChad/starter ~/.config/nvim 
+
+```
+
+Clone the repo
+
 ```bash
 git clone https://github.com/codingdestro/destro-config.get ~/.config/nvim
 
